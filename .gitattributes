@@ -1,0 +1,2 @@
+# Fuerza LF en todo el repo: el Makefile y los scripts se rompen con CRLF (Git en Windows).
+* text=auto eol=lf
