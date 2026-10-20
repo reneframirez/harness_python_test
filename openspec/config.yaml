@@ -1,0 +1,19 @@
+schema: spec-driven
+
+context: |
+  Language: es
+  All artifacts must be written in es.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  Project: Python 3.11+, no runtime dependencies, code in src/app/, tests in tests/.
+  The only way to prove a change is done is `make verify` (lint + mypy strict + pytest, coverage >= 90%).
+  Read AGENTS.md before proposing or implementing anything.
+
+rules:
+  proposal:
+    - State what is out of scope.
+  specs:
+    - Every requirement needs at least one scenario written as WHEN/THEN.
+  tasks:
+    - Write the test task before the implementation task it covers.
+    - Last task is always running `make verify`.

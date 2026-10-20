@@ -8,7 +8,13 @@ Instrucciones para cualquier agente de código en este repo. Es la fuente única
 Proyecto Python vacío para construir y probar un harness de desarrollo con agentes, un MVP a la vez.
 Python 3.11+, sin dependencias de runtime. Gestor: `uv`. Calidad: `ruff`, `mypy --strict`, `pytest`.
 
-Estado: MVP 1 (esqueleto). Todavía no hay specs, CI ni hooks; llegan en los MVP siguientes.
+Estado: MVP 2 (OpenSpec). Todavía no hay CI ni hooks; llegan en los MVP siguientes.
+
+## Specs (OpenSpec)
+
+Todo desarrollo es un change de OpenSpec en `openspec/changes/<nombre>/` (proposal, specs, tasks).
+Las specs vigentes están en `openspec/specs/`. Las reglas para redactarlas están en `openspec/config.yaml`.
+Cada requirement lleva al menos un escenario WHEN/THEN. `make spec` las valida en modo estricto.
 
 ## Comandos (punto de entrada único: `make`)
 
@@ -16,7 +22,8 @@ Estado: MVP 1 (esqueleto). Todavía no hay specs, CI ni hooks; llegan en los MVP
 |---|---|
 | `make setup` | Instala dependencias |
 | `make format` | Formatea y autocorrige lint |
-| `make verify` | **Gate completo**: lint + mypy strict + pytest con cobertura mínima del 90% |
+| `make spec` | Valida specs y changes de OpenSpec (strict); requiere Node.js |
+| `make verify` | **Gate completo**: lint + mypy strict + pytest con cobertura mínima del 90% + `make spec` |
 
 La prueba final de cualquier cambio es `make verify` en verde, no un `ruff` o `pytest` suelto.
 
@@ -27,6 +34,7 @@ uv run ruff format --check src tests
 uv run ruff check src tests
 uv run mypy
 uv run pytest
+npx --yes @fission-ai/openspec@1.14.3 validate --all --strict
 ```
 
 ## Convenciones

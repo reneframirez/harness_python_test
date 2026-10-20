@@ -1,7 +1,8 @@
 .DEFAULT_GOAL := help
 RUN := uv run --quiet
+OPENSPEC := npx --yes @fission-ai/openspec@1.14.3
 
-.PHONY: help setup format lint typecheck test verify
+.PHONY: help setup format lint typecheck test spec verify
 
 help: ## Muestra esta ayuda
 	@grep -E '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) | awk -F':.*?## ' '{printf "  %-12s %s\n", $$1, $$2}'
@@ -23,5 +24,8 @@ typecheck: ## mypy en modo strict
 test: ## pytest con cobertura minima del 90%
 	$(RUN) pytest
 
-verify: lint typecheck test ## Gate completo: lo que debe estar en verde antes de dar algo por terminado
+spec: ## Valida specs y changes de OpenSpec (strict)
+	$(OPENSPEC) validate --all --strict
+
+verify: lint typecheck test spec ## Gate completo: lo que debe estar en verde antes de dar algo por terminado
 	@echo "verify OK"
