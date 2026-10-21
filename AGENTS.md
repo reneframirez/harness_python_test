@@ -8,13 +8,16 @@ Instrucciones para cualquier agente de código en este repo. Es la fuente única
 Proyecto Python vacío para construir y probar un harness de desarrollo con agentes, un MVP a la vez.
 Python 3.11+, sin dependencias de runtime. Gestor: `uv`. Calidad: `ruff`, `mypy --strict`, `pytest`.
 
-Estado: MVP 2 (OpenSpec). Todavía no hay CI ni hooks; llegan en los MVP siguientes.
+Estado: MVP 3 (CI). Todavía no hay hooks ni skills de agente; llegan en los MVP siguientes.
 
 ## Specs (OpenSpec)
 
 Todo desarrollo es un change de OpenSpec en `openspec/changes/<nombre>/` (proposal, specs, tasks).
 Las specs vigentes están en `openspec/specs/`. Las reglas para redactarlas están en `openspec/config.yaml`.
 Cada requirement lleva al menos un escenario WHEN/THEN. `make spec` las valida en modo estricto.
+
+**Sin spec no hay código:** un cambio en `src/` debe ir con cambios en `openspec/changes/` o
+`openspec/specs/`. Lo comprueba `make spec-gate` y el CI lo exige en cada pull request.
 
 ## Comandos (punto de entrada único: `make`)
 
@@ -23,6 +26,7 @@ Cada requirement lleva al menos un escenario WHEN/THEN. `make spec` las valida e
 | `make setup` | Instala dependencias |
 | `make format` | Formatea y autocorrige lint |
 | `make spec` | Valida specs y changes de OpenSpec (strict); requiere Node.js |
+| `make spec-gate` | Falla si hay cambios en `src/` sin spec (compara contra `BASE`, por defecto `origin/main`) |
 | `make verify` | **Gate completo**: lint + mypy strict + pytest con cobertura mínima del 90% + `make spec` |
 
 La prueba final de cualquier cambio es `make verify` en verde, no un `ruff` o `pytest` suelto.

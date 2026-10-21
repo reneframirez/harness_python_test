@@ -1,0 +1,33 @@
+# CI delgado: toda la logica vive en el Makefile. Si cambias de plataforma (GitLab, Azure),
+# solo se reescribe este archivo; el gate (make verify / make spec-gate) es el mismo.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: make setup
+      - run: make verify
+      # Sin spec no hay codigo: solo en PR, comparando contra la rama destino.
+      - if: github.event_name == 'pull_request'
+        run: make spec-gate BASE=origin/${{ github.base_ref }}
