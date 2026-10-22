@@ -27,6 +27,6 @@ Las instrucciones para agentes están en [`AGENTS.md`](AGENTS.md).
 |---|---|---|
 | 1 | Esqueleto vacío con `make verify` | hecho |
 | 2 | OpenSpec y validación de specs dentro de `verify` | hecho |
-| 3 | CI en GitHub Actions y gate "sin spec no hay código" | en curso |
+| 3 | CI en GitHub Actions y gate "sin spec no hay código" | hecho |
 | 4 | Hooks, permisos, skills y subagentes de Claude Code | pendiente |
 | 5 | `make doctor` y tareas de referencia para medir el harness | pendiente |
