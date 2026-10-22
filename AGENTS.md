@@ -8,7 +8,7 @@ Instrucciones para cualquier agente de código en este repo. Es la fuente única
 Proyecto Python vacío para construir y probar un harness de desarrollo con agentes, un MVP a la vez.
 Python 3.11+, sin dependencias de runtime. Gestor: `uv`. Calidad: `ruff`, `mypy --strict`, `pytest`.
 
-Estado: MVP 3 (CI). Todavía no hay hooks ni skills de agente; llegan en los MVP siguientes.
+Estado: MVP 3 (CI) + comandos `/opsx:*` de OpenSpec para Claude Code. Hooks y subagentes propios: pendientes.
 
 ## Specs (OpenSpec)
 
@@ -40,6 +40,12 @@ uv run mypy
 uv run pytest
 npx --yes @fission-ai/openspec@1.14.3 validate --all --strict
 ```
+
+## Datos de entrada
+
+- `eaf/` (raíz) recibe los PDF de EAF reales. Están ignorados por git: traen datos de personas.
+- Las pruebas usan texto sintético con el mismo formato; nunca leen `eaf/`.
+- Las salidas generadas van a `salida/` (también ignorada).
 
 ## Convenciones
 

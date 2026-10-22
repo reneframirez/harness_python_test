@@ -9,6 +9,9 @@ context: |
   The only way to prove a change is done is `make verify` (lint + mypy strict + pytest, coverage >= 90%).
   Read AGENTS.md before proposing or implementing anything.
 
+  Domain: input documents are Chilean Coordinador Electrico Nacional "Estudio para analisis de falla" (EAF)
+  PDFs placed in eaf/ (never committed). Tests must use synthetic text, never the real PDFs.
+
 rules:
   proposal:
     - State what is out of scope.

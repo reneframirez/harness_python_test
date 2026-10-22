@@ -221,3 +221,10 @@ __marimo__/
 
 # Claude Code: configuracion local por usuario (no se versiona)
 .claude/settings.local.json
+
+# EAF reales: no se versionan (datos de personas); solo el README de la carpeta
+eaf/*
+!eaf/README.md
+
+# Salidas generadas
+salida/
