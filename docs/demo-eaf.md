@@ -10,7 +10,10 @@ Guion para mostrar spec-driven development con OpenSpec y Claude Code. Duración
 4. Abrir Claude Code en la carpeta del proyecto. Deben verse los comandos `/opsx:*`.
 5. Crear la rama de trabajo: `git checkout -b feat/extraer-eaf-seccion1`.
 
-## El requerimiento (se dice en una frase)
+## El requerimiento
+
+Está escrito en [`req/REQ-001-extraer-eaf-seccion1.md`](../req/REQ-001-extraer-eaf-seccion1.md).
+En Claude Code se le puede indicar al agente que lo lea. Para decirlo en una frase:
 
 > Quiero extraer la sección "1. Descripción pormenorizada de la perturbación", puntos a, b y c,
 > de los EAF que están en la carpeta `eaf/`, y dejar un CSV con una fila por EAF.

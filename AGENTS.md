@@ -41,6 +41,11 @@ uv run pytest
 npx --yes @fission-ai/openspec@1.14.3 validate --all --strict
 ```
 
+## Requerimientos
+
+`req/` guarda los requerimientos tal como llegan (`REQ-NNN-nombre.md`). Cada uno se convierte en un
+change de OpenSpec; el requerimiento no es la spec, la spec se deriva de él.
+
 ## Datos de entrada
 
 - `eaf/` (raíz) recibe los PDF de EAF reales. Están ignorados por git: traen datos de personas.
